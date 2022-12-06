@@ -1,0 +1,34 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: shms
+  mail:
+    host: smtp.126.com
+    username: liujiadong111@126.com
+    password: DKQOGLQEPFFHVAHW
+    default-encoding: utf-8
+  thymeleaf:
+    cache: false # 关闭模板引擎缓存
+    mode: HTML5
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://sh-cynosdbmysql-grp-1d6r821g.sql.tencentcdb.com:28853/shms?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+      username: shms
+      password: Liu2213616200@
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+mybatis-plus:
+  configuration:
+    mapUnderscoreToCamelCase: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+      insert_strategy: ignored
+
