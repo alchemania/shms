@@ -1,7 +1,7 @@
 package com.shms.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.shms.admin.Mapper.JiankangMapper;
+import com.shms.admin.mapper.JiankangMapper;
 import com.shms.admin.service.JiankangService;
 import com.shms.admin.entity.Jiankang;
 import org.springframework.beans.factory.annotation.Autowired;

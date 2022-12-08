@@ -80,12 +80,8 @@ public class JiankangController {
      * @return
      */
     @GetMapping("/{id}")
-    public Ret<Object> get(@RequestParam(required = false) String id) {
+    public Ret<Object> get(@PathVariable String id) {
         try {
-            if (id == null) {
-                List<Jiankang> jiankangList = jiankangService.list();
-                return Ret.success(jiankangList);
-            }
             Jiankang jiankang = jiankangService.getById(id);
             return Ret.success(jiankang);
         } catch (

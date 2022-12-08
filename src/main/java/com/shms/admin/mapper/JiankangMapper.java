@@ -1,4 +1,4 @@
-package com.shms.admin.Mapper;
+package com.shms.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shms.admin.entity.Jiankang;

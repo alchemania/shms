@@ -1,7 +1,7 @@
 package com.shms.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.shms.admin.Mapper.StudentMapper;
+import com.shms.admin.mapper.StudentMapper;
 import com.shms.admin.service.StudentService;
 import com.shms.admin.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;

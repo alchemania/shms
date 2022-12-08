@@ -1,9 +1,13 @@
 package com.shms.admin.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.shms.common.Service.UserService;
 import com.shms.common.entity.User;
 import com.shms.common.utils.Ret;
+import com.shms.common.utils.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +47,12 @@ public class AdminController {
     @PutMapping
     public Ret<String> edit(@RequestBody User user) {
         try {
+            User user1 = userService.getById(user.getUserid());
+            if (user1 == null) return Ret.error("用户不存在");
+            if (user.getPassword() == null) user.setPassword(user1.getPassword());
+            else {
+                user.setPassword(SecurityUtils.encodePassword(user.getPassword()));
+            }
             userService.updateById(user);
             return Ret.success("修改成功");
         } catch (Exception e) {
@@ -57,16 +67,15 @@ public class AdminController {
      * @return
      */
     @GetMapping("/{id}")
-    public Ret<Object> get(@RequestParam(required = false) String id) {
+    public Ret<Object> get(@PathVariable(required = false) String id) {
         try {
             if (id == null) {
                 List<User> userList = userService.list();
                 return Ret.success(userList);
             }
-            User notice = userService.getById(id);
-            return Ret.success(notice);
-        } catch (
-                Exception e) {
+            User userServiceById = userService.getById(id);
+            return Ret.success(userServiceById);
+        } catch (Exception e) {
             return Ret.error(e.getMessage());
         }
     }
@@ -78,6 +87,21 @@ public class AdminController {
     public Ret<List<User>> getall() {
         try {
             List<User> userList = userService.list();
+            for (User i : userList) i.setPassword("");
+            return Ret.success(userList);
+        } catch (Exception e) {
+            return Ret.error(e.getMessage());
+        }
+    }
+
+    @PostMapping("/fuzzyquery")
+    public Ret<List<Object>> getfuzzy(@RequestBody JSONObject params) {
+        try {
+            String username = (String) params.get("username");
+            LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.like(User::getUsername, username);
+            lambdaQueryWrapper.select(User::getUsername);
+            List<Object> userList = userService.listObjs(lambdaQueryWrapper);
             return Ret.success(userList);
         } catch (Exception e) {
             return Ret.error(e.getMessage());

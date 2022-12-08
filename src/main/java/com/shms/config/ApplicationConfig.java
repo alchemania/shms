@@ -1,4 +1,4 @@
-package com.shms.common.config;
+package com.shms.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

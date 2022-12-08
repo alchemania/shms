@@ -21,6 +21,8 @@ public class Notice implements Serializable {
     private String notice_name;//标题
     private String notice_text;//内容
     private String notice_type;//类型
+    private Date start_time;//开始时间
+    private Date end_time;//结束时间
 
     @TableField(fill = FieldFill.INSERT)
     private Date create_time;

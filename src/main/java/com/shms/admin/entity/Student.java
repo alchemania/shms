@@ -14,10 +14,9 @@ import java.io.Serializable;
 @TableName("sys_student")
 public class Student implements Serializable {
     @TableId
-    private String id;//主键
-    private String userid; //userid
-    private String student_name;//姓名
     private String student_number;//学号
+    private String username; //userid
+    private String student_name;//姓名
     private String student_master;//专业
     private String student_class;//班级
     private String student_phone;//联系方式

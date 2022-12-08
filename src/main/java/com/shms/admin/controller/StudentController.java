@@ -34,7 +34,6 @@ public class StudentController {
     @PostMapping
     public Ret<String> add(@RequestBody Student student) {
         try {
-            student.setId(AdminUtils.makeuuid());
             studentService.save(student);
             return Ret.success("新增成功");
         } catch (Exception e) {
@@ -83,12 +82,8 @@ public class StudentController {
      * @return
      */
     @GetMapping("/{id}")
-    public Ret<Object> get(@RequestParam(required = false) String id) {
+    public Ret<Object> get(@RequestParam String id) {
         try {
-            if (id == null) {
-                List<Student> studentList = studentService.list();
-                return Ret.success(studentList);
-            }
             Student student = studentService.getById(id);
             return Ret.success(student);
         } catch (

@@ -1,7 +1,7 @@
 package com.shms.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.shms.admin.Mapper.NoticeMapper;
+import com.shms.admin.mapper.NoticeMapper;
 import com.shms.admin.service.NoticeService;
 import com.shms.admin.entity.Notice;
 import org.springframework.beans.factory.annotation.Autowired;

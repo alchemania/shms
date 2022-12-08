@@ -6,6 +6,14 @@ import login from '../components/login/login.vue'
 import Navbar from '../components/Navbar.vue'
 import cookies from "vue-cookies";
 import RiskArea from '../components/RiskArea/RiskArea.vue'
+import NavAdmin from '../components/Admin/Navbar.vue'
+import Notice from '../components/Admin/Notice/Notice.vue'
+import Jiankang from '../components/Admin/Jiankang/Jiankang.vue'
+import Admin from "../components/Admin/Admin/Admin.vue";
+import Student from '../components/Admin/Student/Student.vue'
+import {getValidNotice} from "../api/api.js";
+import {ElMessage, ElNotification} from "element-plus";
+import {h} from "vue";
 
 const routes = [
     {
@@ -17,11 +25,33 @@ const routes = [
         component: login,
     },
     {
+        path: '/admin',
+        component: NavAdmin,
+        children: [
+            {
+                path: '/notice',
+                component: Notice,
+            },
+            {
+                path: '/jiankang',
+                component: Jiankang,
+            },
+            {
+                path: '/admin',
+                component: Admin,
+            },
+            {
+                path: '/student',
+                component: Student,
+            },
+        ]
+    },
+    {
         path: '/main',
         component: Navbar,
         children: [
             {
-                path: '/healthcard',
+                path: '/main',
                 component: healthCard,
             },
             {
@@ -36,7 +66,8 @@ const routes = [
                 path: '/riskarea',
                 component: RiskArea,
             },
-        ]
+        ],
+
     }
 
 ]
@@ -62,5 +93,6 @@ router.beforeEach((to, from, next) => {
         }
     }
 });
+
 
 export default router

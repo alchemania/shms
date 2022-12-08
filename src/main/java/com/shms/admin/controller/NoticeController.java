@@ -1,6 +1,9 @@
 package com.shms.admin.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.shms.admin.service.NoticeService;
 import com.shms.admin.util.AdminUtils;
 import com.shms.admin.entity.Notice;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -46,7 +50,6 @@ public class NoticeController {
      * @param params
      * @return
      */
-
     @DeleteMapping
     public Ret<String> delete(@RequestBody JSONObject params) {
         try {
@@ -83,10 +86,6 @@ public class NoticeController {
     @GetMapping("/{id}")
     public Ret<Object> get(@RequestParam(required = false) String id) {
         try {
-            if (id == null) {
-                List<Notice> noticeList = noticeService.list();
-                return Ret.success(noticeList);
-            }
             Notice notice = noticeService.getById(id);
             return Ret.success(notice);
         } catch (
@@ -103,8 +102,23 @@ public class NoticeController {
         try {
             List<Notice> noticeList = noticeService.list();
             return Ret.success(noticeList);
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
+            return Ret.error(e.getMessage());
+        }
+    }
+
+    /**
+     * @return
+     */
+    @GetMapping("/valid")
+    public Ret<List<Notice>> getValid() {
+        try {
+            LambdaQueryWrapper<Notice> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.le(Notice::getStart_time, new Date());
+            lambdaQueryWrapper.ge(Notice::getEnd_time, new Date());
+            List<Notice> noticeList = noticeService.list(lambdaQueryWrapper);
+            return Ret.success(noticeList);
+        } catch (Exception e) {
             return Ret.error(e.getMessage());
         }
     }

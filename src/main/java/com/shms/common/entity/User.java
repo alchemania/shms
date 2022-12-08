@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Data
 @TableName("sys_usr")
-public class User{
+public class User {
     @TableId
     private String userid;
     private String username;
@@ -17,7 +17,7 @@ public class User{
     private String email;
     private int privilege;
 
-    public boolean validate(String username,String password){
-        return Objects.equals(username, this.username)&& SecurityUtils.matchesPassword(password,this.password);
+    public boolean validate(String username, String password) {
+        return Objects.equals(username, this.username) && SecurityUtils.matchesPassword(password, this.password);
     }
 }
