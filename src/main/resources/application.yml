@@ -23,6 +23,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resourses/,classpath:/resourses/,classpath:/static/,classpath:/public/
 mybatis-plus:
   configuration:
     mapUnderscoreToCamelCase: false
