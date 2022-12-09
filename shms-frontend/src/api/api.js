@@ -63,7 +63,7 @@ export const getAllJiankang = params => ajaxGet({url: `jiankang/all/`, params})
 export const getAllStudents = params => ajaxGet({url: `student/all/`, params})
 
 //新增一个学生
-export const addOneStudent = params => ajaxPut({url: `student/`, params})
+export const addOneStudent = params => ajaxPost({url: `student/`, params})
 
 //更新一个学生信息 admin
 export const editOneStudent = params => ajaxPut({url: `student/`, params})
