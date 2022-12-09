@@ -99,6 +99,7 @@ const disabled = ref(false)
 const list = ref([])
 const options = ref([])
 const loading = ref(false)
+const isNew = ref(false)
 
 const remoteMethod = (query) => {
   if (query) {
@@ -171,6 +172,7 @@ const getList = async (params) => {
 const handleNew = () => {
   drawer.value = !drawer.value
   disabled.value = false
+  isNew.value = true
 }
 
 const handleEdit = (row) => {
@@ -178,6 +180,7 @@ const handleEdit = (row) => {
   console.log(form)
   disabled.value = true
   drawer.value = !drawer.value
+  isNew.value = false
 }
 const handleBack = (row) => {
   drawer.value = !drawer.value
@@ -214,7 +217,7 @@ const handleDelete = (row) => {
 }
 
 const handlePut = (val) => {
-  if (form.student_number !== "") {
+  if (!isNew.value) {
     editOneStudent(form)
         .then((res) => {
           console.log(res.data)
@@ -244,8 +247,7 @@ const handlePut = (val) => {
           });
           drawer.value = !drawer.value
         });
-  } else if (form.student_number === "") {
-    isEditable.value = false
+  } else {
     addOneStudent(form).then((res) => {
       console.log(res.data)
       if (res.data.code === 200) {
