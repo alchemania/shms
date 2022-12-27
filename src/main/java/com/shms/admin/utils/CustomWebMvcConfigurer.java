@@ -1,4 +1,4 @@
-package com.shms.admin.util;
+package com.shms.admin.utils;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;

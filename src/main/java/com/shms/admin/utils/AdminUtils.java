@@ -1,4 +1,4 @@
-package com.shms.admin.util;
+package com.shms.admin.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.UUID;

@@ -3,7 +3,7 @@ package com.shms.admin.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.shms.admin.entity.Jiankang;
 import com.shms.admin.service.JiankangService;
-import com.shms.admin.util.AdminUtils;
+import com.shms.admin.utils.AdminUtils;
 import com.shms.common.utils.Ret;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
